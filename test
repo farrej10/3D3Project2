@@ -1,0 +1,8 @@
+#!/bin/bash
+
+gnome-terminal -e 'bash -c "./my-router A 10000 | tee outputA.txt" & sleep 1;'
+gnome-terminal -e 'bash -c "./my-router B 10001 | tee outputB.txt" & sleep 1;'
+gnome-terminal -e 'bash -c "./my-router C 10002 | tee outputC.txt" & sleep 1;'
+gnome-terminal -e 'bash -c "./my-router D 10003 | tee outputD.txt" & sleep 1;'
+gnome-terminal -e 'bash -c "./my-router E 10005 | tee outputE.txt" & sleep 1;'
+gnome-terminal -e 'bash -c "./my-router F 10004 | tee outputF.txt" & sleep 1;'

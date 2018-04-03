@@ -13,6 +13,8 @@
 #include <thread>
 #include <unistd.h>
 
+using namespace std;
+
 routerFunctions::routerFunctions(char* argv[])
 {
     connections = 0;
@@ -43,27 +45,29 @@ void routerFunctions::start_up()
     char buffer[12];
     FILE* f;
     unsigned int i = 0;
-    f = fopen("top.txt", "r");
+    f = fopen("topology.txt", "r");
     if (f != NULL) {
         while (!feof(f)) {
-            fgets(buffer, 12, f);
-            if (buffer[0] == ID) {
-                string a;
-                a += buffer[2];
-                a += buffer[3];
-                a += buffer[10];
-                a += buffer[3];
-                a += buffer[4];
-                a += buffer[5];
-                a += buffer[6];
-                a += buffer[7];
-                a += buffer[8];
-                //cout << a << endl;
-                //
-                for (i = 0; i < RTentries.size(); i++) {
-                    if (RTentries[i][0] == a[0]) {
-                        RTentries[i] = a;
-                        //cout<< "ok" << endl;
+            if (fgets(buffer, 12, f) != NULL) {
+
+                if (buffer[0] == ID) {
+                    string a;
+                    a += buffer[2];
+                    a += buffer[3];
+                    a += buffer[10];
+                    a += buffer[3];
+                    a += buffer[4];
+                    a += buffer[5];
+                    a += buffer[6];
+                    a += buffer[7];
+                    a += buffer[8];
+                    //cout << a << endl;
+                    //
+                    for (i = 0; i < RTentries.size(); i++) {
+                        if (RTentries[i][0] == a[0]) {
+                            RTentries[i] = a;
+                            //cout<< "ok" << endl;
+                        }
                     }
                 }
             }

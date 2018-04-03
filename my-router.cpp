@@ -12,10 +12,12 @@
 #include <thread>
 #include <unistd.h>
 
+#define BUFFERSIZE 2048
+using namespace std;
 int main(int argc, char* argv[])
 {
-    int stable_count = 0;
-    char buf[1024];
+    //int stable_count = 0;
+    char buf[BUFFERSIZE];
     routerFunctions router(argv);
     for (unsigned int i = 0; i < router.RTentries.size(); i++) {
         string sample = router.RTentries.at(i);
@@ -41,13 +43,12 @@ int main(int argc, char* argv[])
 
     while (router.stable == false) {
         memset(&client, 0, clientLength); // Clear the client structure
-        memset(buf, 0, 1024); // Clear the receive buffer
+        memset(buf, 0, BUFFERSIZE); // Clear the receive buffer
 
         // Wait for message
-        int bytesIn = recv(opensocket, buf, 1024, 0);
-        //while(bytesIn < 0){
-        // bytesIn = recv(opensocket, buf, 1024, 0);
-
+        int bytesIn = recv(opensocket, buf, BUFFERSIZE, 0);
+        //while (bytesIn < 0) {
+        //    bytesIn = recv(opensocket, buf, BUFFERSIZE, 0);
         //}
 
         // Display message and client info
